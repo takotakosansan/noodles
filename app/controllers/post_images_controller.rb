@@ -12,9 +12,11 @@ class PostImagesController < ApplicationController
   end
 
   def index
+    @post_images = Postimage.all
   end
 
   def show
+    @post_image = Postimage.find(params[:id]) 
   end
   
     # 投稿データのストロングパラメータ
