@@ -16,17 +16,23 @@
       <h1 class="headline"> All Lists </h1>
     </header>
     <nav>
-      <ul class="nav-list">
-        <li class="nav-list-item">
-          <%= link_to "Top", top_path %>
-        </li>
-        <li class="nav-list-item">
-          <%= link_to "Lists", lists_path %>
-        </li>
-        <li class="nav-list-item">
-          <%= link_to "New List", new_list_path %>
-        </li>
-      </ul>
+      <% if user_signed_in? %>
+    <li>
+      <%= link_to '投稿フォーム', new_post_image_path %>
+    </li>
+    <li>
+      <%= link_to 'マイページ', user_path(current_user.id) %>    </li>
+    <li>
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+    </li>
+  <% else %>
+    <li>
+      <%= link_to "新規登録", new_user_registration_path %>
+    </li>
+    <li>
+      <%= link_to "ログイン", new_user_session_path %>
+    </li>
+  <% end %>
     </nav>
     <main>      
       <%= yield %>
